@@ -15,15 +15,16 @@ namespace ATM
 
             if (accountSelection == "savings")
             {
-                var userSavingsCurrentBalance = new SavingsAccount();
-                userSavingsCurrentBalance.CheckAccountBalance();
+                //var userSavingsCurrentBalance = new SavingsAccount();
+               // userSavingsCurrentBalance.CheckAccountBalance();
 
                 Console.WriteLine("How much would you like to deposit?");
                 var amount = Convert.ToInt32(Console.ReadLine());
                 var newBalance = new SavingsAccount();
                 newBalance.SavingsAccountBalance = newBalance.SavingsAccountBalance + amount;
                 Console.WriteLine($"Your Savings Account Balance is ${newBalance.SavingsAccountBalance}");
-                Console.ReadLine();
+                newBalance.StoreNewTransaction(newBalance.SavingsAccountBalance);
+
             }
 
             //else 
