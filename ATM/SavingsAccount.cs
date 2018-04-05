@@ -11,44 +11,45 @@ namespace ATM
     {
         public double SavingsAccountBalance { get; set; }
 
+        public List<string> CheckAccountBalance()
+        { 
+            var currentSavingsAccountBalance = new List<string>();
 
-        //public void CheckAccountBalance()
-        //{
+            const string savingsAccountFilePath = "../../savingsAccount.csv";
 
-            //var currentSavingsAccountBalance = new List<>;
+            using (var reader = new StreamReader(savingsAccountFilePath))
+            {
+                while (reader.Peek() > -1)
+                {
+                    var existingTransaction = reader.ReadLine();
 
-           // const string savingsAccountFilePath = "../../savingsAccount.csv";
+                    currentSavingsAccountBalance.Add(existingTransaction);
+                }
+            }
+            return currentSavingsAccountBalance;
+        }
 
-           // using (var reader = new StreamReader(savingsAccountFilePath))
-          //  {
-           //     while (reader.Peek() > -1)
-           //     {
-              //      var existingTransaction = Convert.ToInt32(reader.ReadLine());
-
-              //      SavingsAccountBalance.Add(existingTransaction);
-             //   }
-          //  }
-
-
-          //  Console.WriteLine($"S{SavingsAccountBalance}");
-          //  Console.ReadLine();            
-        //}
 
         public void StoreNewTransaction(double newTransaction)
         {
-            var userData = new List<string>();
+            var newUserData = new List<string>();
             const string savingsAccountFilePath = "../../savingsAccount.csv";
+            newUserData = CheckAccountBalance();//need to Split the List and convert to integers and add
 
-            userData.Add(newTransaction.ToString());
+            // SavingsAccountBalance = SavingsAccountBalance + newUserData;
+
+
+            newUserData.Add(newTransaction.ToString());
 
             using (var writer = new StreamWriter(savingsAccountFilePath))
             {
-                foreach (var transaction in userData) { 
-                Console.WriteLine("storing user data");
-                writer.WriteLine($"{transaction}");
+                foreach (var transaction in newUserData)
+                {
+                    Console.WriteLine("storing user data");
+                    writer.WriteLine($"{transaction}");
                 }
             }
-
+            Console.WriteLine($"Your Savings Account Balance is ${SavingsAccountBalance}");
         }
 
 
@@ -56,6 +57,3 @@ namespace ATM
 
     }
 }
-
-//will need to convert $$ values to strings
-

@@ -12,28 +12,33 @@ namespace ATM
         {
             //the system assumes only 1 user
 
-            //when the program starts, it will display the current balance for their checking and savings account.If none exist, show 0.
-            Console.WriteLine("Welcome to the ATM! Would you like to make a (withdrawal), (deposit?) or (transfer)? You can also (view) your account balance.");
-            var startTask = Console.ReadLine().ToLower();
-            if (startTask == "withdrawal")
+            var programIsRunning = true;
+            while (programIsRunning)
             {
-                var userWithdrawal = new Withdrawal();
-                userWithdrawal.StartWithdrawal();
-            } 
-            else if (startTask == "deposit")
-            {
-               var userDeposit = new Deposit();
-                userDeposit.StartDeposit();
+                //when the program starts, it will display the current balance for their checking and savings account.If none exist, show 0.
+                Console.WriteLine("Welcome to the ATM! Would you like to make a (withdrawal), (deposit?) or (transfer)? You can also (view) your account balance.");
+                var startTask = Console.ReadLine().ToLower();
+                if (startTask == "withdrawal")
+                {
+                    var userWithdrawal = new Withdrawal();
+                    userWithdrawal.StartWithdrawal();
+                }
+                else if (startTask == "deposit")
+                {
+                    var userDeposit = new Deposit();
+                    userDeposit.StartDeposit();
 
-            } else if (startTask == "transfer")
-            {
-                //transfer functionality
+                }
+                else if (startTask == "transfer")
+                {
+                    //transfer functionality
 
-            } else
-            {
-                //view functionality
+                }
+                else
+                {
+                    //view functionality
+                }
             }
-
         }
     }
 }
