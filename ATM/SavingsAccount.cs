@@ -14,34 +14,26 @@ namespace ATM
         public List<string> CheckAccountBalance()
         { 
             var savingsAccountDepositHistory = new List<string>();
-
             const string savingsAccountDepositHistoryFilePath = "../../savingsAccount.csv";
-
             using (var reader = new StreamReader(savingsAccountDepositHistoryFilePath))
             {
                 while (reader.Peek() > -1)
                 {
                     var existingDeposit = Convert.ToInt32(reader.ReadLine());
-
                     SavingsAccountBalance = SavingsAccountBalance + existingDeposit;
-
                     var existingDepositReWrite = Convert.ToString(existingDeposit);
-
                     savingsAccountDepositHistory.Add(existingDepositReWrite);
                 }
             }
             return savingsAccountDepositHistory;
         }
 
-
         public void StoreNewTransaction(double newTransaction)
         {
             var newDepositHistory = new List<string>();
             const string savingsAccountDepositHistoryFilePath = "../../savingsAccount.csv";
             newDepositHistory = CheckAccountBalance();
-
             newDepositHistory.Add(newTransaction.ToString());
-
             using (var writer = new StreamWriter(savingsAccountDepositHistoryFilePath))
             {
                 foreach (var transaction in newDepositHistory)
@@ -49,11 +41,7 @@ namespace ATM
                     writer.WriteLine($"{transaction}");
                 }
             }
-            Console.WriteLine($"Your Savings Account Balance is ${SavingsAccountBalance}");
+
         }
-
-
-
-
     }
 }

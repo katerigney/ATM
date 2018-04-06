@@ -8,21 +8,34 @@ namespace ATM
 {
     class Deposit
     {
-        public void StartDeposit()
+        public void StartDeposit(string accountSelection)
         {
-            Console.WriteLine("Do you want to deposit into your (checking) or (savings) account?");
-            var accountSelection = Console.ReadLine().ToLower();
-
-            if (accountSelection == "savings")
+             if (accountSelection == "savings")
             {
-                //var userSavingsCurrentBalance = new SavingsAccount();
-                //userSavingsCurrentBalance.CheckAccountBalance();
-
                 Console.WriteLine("How much would you like to deposit?");
-                var amount = Convert.ToInt32(Console.ReadLine());
-                var newBalance = new SavingsAccount();
-                newBalance.SavingsAccountBalance = newBalance.SavingsAccountBalance + amount;
-                newBalance.StoreNewTransaction(newBalance.SavingsAccountBalance);
+                var response = Console.ReadLine();
+                int amount;
+                bool result = Int32.TryParse(response, out amount);
+
+                var enterAmount = true;
+                
+                while (enterAmount)
+                {
+                    if (result == true)
+                    {
+                        var newBalance = new SavingsAccount();
+                        newBalance.SavingsAccountBalance = newBalance.SavingsAccountBalance + amount;
+                        newBalance.StoreNewTransaction(newBalance.SavingsAccountBalance);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Sorry, you didn't enter a valid amount. Please try again.");
+
+                    }
+                }
+
+                var endDeposit = new Program();
+                endDeposit.ReturnCurrentBalance(SavingsAccount, SavingsAccount.SavingsAccountBalance)
             }
 
             //else 
