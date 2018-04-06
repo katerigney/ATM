@@ -15,6 +15,9 @@ namespace ATM
             var programIsRunning = true;
             while (programIsRunning)
             {
+                //the system should load the current amounts when the program starts
+
+
                 //when the program starts, it will display the current balance for their checking and savings account.If none exist, show 0.
                 Console.WriteLine("Welcome to the ATM! Would you like to make a (withdrawal), (deposit?) or (transfer)? You can also (view) your account balance.");
                 var startTask = Console.ReadLine().ToLower();
@@ -56,6 +59,5 @@ namespace ATM
 
 //the system should save the new amount to a file after every action
 
-//the system should load the current amounts when the program starts
 
 //the system should log all the transactions that occur to a file, these logs should have what was done, the amount that moved when it happened and what accounts were affected and other information you feel is useful

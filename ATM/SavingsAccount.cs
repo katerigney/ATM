@@ -9,43 +9,43 @@ namespace ATM
 {
     class SavingsAccount
     {
-        public double SavingsAccountBalance { get; set; }
+        public double SavingsAccountBalance { get; set; } = 0;
 
         public List<string> CheckAccountBalance()
         { 
-            var currentSavingsAccountBalance = new List<string>();
+            var savingsAccountDepositHistory = new List<string>();
 
-            const string savingsAccountFilePath = "../../savingsAccount.csv";
+            const string savingsAccountDepositHistoryFilePath = "../../savingsAccount.csv";
 
-            using (var reader = new StreamReader(savingsAccountFilePath))
+            using (var reader = new StreamReader(savingsAccountDepositHistoryFilePath))
             {
                 while (reader.Peek() > -1)
                 {
-                    var existingTransaction = reader.ReadLine();
+                    var existingDeposit = Convert.ToInt32(reader.ReadLine());
 
-                    currentSavingsAccountBalance.Add(existingTransaction);
+                    SavingsAccountBalance = SavingsAccountBalance + existingDeposit;
+
+                    var existingDepositReWrite = Convert.ToString(existingDeposit);
+
+                    savingsAccountDepositHistory.Add(existingDepositReWrite);
                 }
             }
-            return currentSavingsAccountBalance;
+            return savingsAccountDepositHistory;
         }
 
 
         public void StoreNewTransaction(double newTransaction)
         {
-            var newUserData = new List<string>();
-            const string savingsAccountFilePath = "../../savingsAccount.csv";
-            newUserData = CheckAccountBalance();//need to Split the List and convert to integers and add
+            var newDepositHistory = new List<string>();
+            const string savingsAccountDepositHistoryFilePath = "../../savingsAccount.csv";
+            newDepositHistory = CheckAccountBalance();
 
-            // SavingsAccountBalance = SavingsAccountBalance + newUserData;
+            newDepositHistory.Add(newTransaction.ToString());
 
-
-            newUserData.Add(newTransaction.ToString());
-
-            using (var writer = new StreamWriter(savingsAccountFilePath))
+            using (var writer = new StreamWriter(savingsAccountDepositHistoryFilePath))
             {
-                foreach (var transaction in newUserData)
+                foreach (var transaction in newDepositHistory)
                 {
-                    Console.WriteLine("storing user data");
                     writer.WriteLine($"{transaction}");
                 }
             }
