@@ -8,14 +8,17 @@ namespace ATM
 {
     class Program
     {
+       static bool programIsRunning = true;
+
+       //static double newAmount =  0;
+
        static public void MMenu()
         {
             Console.WriteLine("Would you like to make a (withdrawal), (deposit) or (transfer)? You can also (view) your account balance.");
             var startTask = Console.ReadLine().ToLower();
             if (startTask == "withdrawal")
             {
-                var userWithdrawal = new Withdrawal();
-                userWithdrawal.StartWithdrawal();
+                //withdrawal functionality
             }
             else if (startTask == "deposit")
             {
@@ -23,7 +26,10 @@ namespace ATM
                 var accountSelection = Console.ReadLine().ToLower();
         
                 var userDeposit = new Deposit();
-                userDeposit.StartDeposit(accountSelection);
+                double newAmount = userDeposit.StartDeposit(accountSelection);
+
+                Console.WriteLine("Your new balance is " + newAmount);
+                FinalQuestion();
 
             }
             else if (startTask == "transfer")
@@ -36,12 +42,13 @@ namespace ATM
                 //view functionality
             }
         }
-
-        static public void ReturnCurrentBalance(/*program name, balance*/ )
+        
+        //FUNCTION: return current balance / Make another transaction?
+        static public void FinalQuestion ()
         {
             var currentAccount = new SavingsAccount();
 
-            Console.WriteLine($"Your {//AcctType} Account Balance is ${currentBalance.SavingsAccountBalance}. Would you like to make another transaction? (Yes) or (No)");
+            Console.WriteLine($"Would you like to make another transaction? (Yes) or (No)");
             var response = Console.ReadLine().ToLower();
             if (response == "Yes")
             {
@@ -49,18 +56,15 @@ namespace ATM
             }
             else
             {
-                Main.programIsRunning = false;
+                programIsRunning = false;
             }
         }
 
-        //FUNCTION: return current balance / Make another transaction?
         //FUNCTION: determine which account to adjust (CHECKING OR SAVINGS)
 
         static void Main(string[] args)
         {
             //the system assumes only 1 user
-
-            var programIsRunning = true;
 
             while (programIsRunning)
             {

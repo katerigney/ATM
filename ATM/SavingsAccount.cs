@@ -9,7 +9,7 @@ namespace ATM
 {
     class SavingsAccount
     {
-        public double SavingsAccountBalance { get; set; } = 0;
+        public double SavingsAccountBalance { get; set; }
 
         public List<string> CheckAccountBalance()
         { 
@@ -28,7 +28,7 @@ namespace ATM
             return savingsAccountDepositHistory;
         }
 
-        public void StoreNewTransaction(double newTransaction)
+        public double StoreNewTransaction(double newTransaction)
         {
             var newDepositHistory = new List<string>();
             const string savingsAccountDepositHistoryFilePath = "../../savingsAccount.csv";
@@ -41,6 +41,8 @@ namespace ATM
                     writer.WriteLine($"{transaction}");
                 }
             }
+
+            return SavingsAccountBalance;
 
         }
     }
