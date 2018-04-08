@@ -11,7 +11,7 @@ namespace ATM
         public double StartDeposit(string accountSelection)
         {
             var newSavingsBalance = new SavingsAccount();
-            var newCheckingBalance = new CheckingAccount();
+            //var newCheckingBalance = new CheckingAccount();
 
 
             if (accountSelection == "savings")
@@ -38,7 +38,7 @@ namespace ATM
 
             }
 
-            else
+            /*else
             {
                 Console.WriteLine("How much would you like to deposit?");
                 var response = Console.ReadLine();
@@ -59,10 +59,10 @@ namespace ATM
                         Console.WriteLine("Sorry, you didn't enter a valid amount. Please try again.");
                     }
                 }
-            }
+            }*/
 
             return newSavingsBalance.SavingsAccountBalance;
-            return newCheckingBalance.CheckingAccountBalance;
+            //return newCheckingBalance.CheckingAccountBalance;
 
 
 
