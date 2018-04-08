@@ -14,19 +14,18 @@ namespace ATM
 
         public double GetBalance()
         {
-            var savingsAccountDepositHistory = new List<string>();
-            const string savingsAccountDepositHistoryFilePath = "../../savingsAccount.csv";
-            using (var reader = new StreamReader(savingsAccountDepositHistoryFilePath))
+            var savingsAccountTransactionHistory = new List<string>();
+            const string savingsAccountTransactionHistoryFilePath = "../../savingsAccountNEW.csv";
+            using (var reader = new StreamReader(savingsAccountTransactionHistoryFilePath))
             {
                 while (reader.Peek() > -1)
                 {
-                    var existingDeposit = Convert.ToInt32(reader.ReadLine());
-                    SavingsAccountBalance = SavingsAccountBalance + existingDeposit;
-                    var existingDepositReWrite = Convert.ToString(existingDeposit);
-                    savingsAccountDepositHistory.Add(existingDepositReWrite);
+                    var existingTransaction = Convert.ToInt32(reader.ReadLine());
+                    SavingsAccountBalance = SavingsAccountBalance + existingTransaction;
+                    var existingTransactionReWrite = Convert.ToString(existingTransaction);
+                    savingsAccountTransactionHistory.Add(existingTransactionReWrite);
                 }
             }
-            Console.WriteLine("SavingsAccountBalance{}");
             return SavingsAccountBalance;
         }
     }

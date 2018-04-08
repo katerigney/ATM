@@ -14,7 +14,7 @@ namespace ATM
         public List<string> CheckAccountBalance()
         { 
             var savingsAccountTransactionHistory = new List<string>();
-            const string savingsAccountTransactionHistoryFilePath = "../../savingsAccount.csv";
+            const string savingsAccountTransactionHistoryFilePath = "../../savingsAccountNEW.csv";
             using (var reader = new StreamReader(savingsAccountTransactionHistoryFilePath))
             {
                 while (reader.Peek() > -1)
@@ -31,7 +31,7 @@ namespace ATM
         public double StoreNewTransaction(double newTransaction)
         {
             var newTransactionHistory = new List<string>();
-            const string savingsAccountTransactionHistoryFilePath = "../../savingsAccount.csv";
+            const string savingsAccountTransactionHistoryFilePath = "../../savingsAccountNEW.csv";
             newTransactionHistory = CheckAccountBalance();
             newTransactionHistory.Add(newTransaction.ToString());
             using (var writer = new StreamWriter(savingsAccountTransactionHistoryFilePath))

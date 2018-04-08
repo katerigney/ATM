@@ -5,14 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-
 namespace ATM
 {
-    class CheckingAccount
+    class GetCheckingBalance
     {
         public double CheckingAccountBalance { get; set; }
 
-        public List<string> CheckAccountBalance()
+        public double GetBalance()
         {
             var checkingAccountTransactionHistory = new List<string>();
             const string checkingAccountTransactionHistoryFilePath = "../../checkingAccountNEW.csv";
@@ -26,25 +25,7 @@ namespace ATM
                     checkingAccountTransactionHistory.Add(existingTransactionReWrite);
                 }
             }
-            return checkingAccountTransactionHistory;
-        }
-
-        public double StoreNewTransaction(double newTransaction)
-        {
-            var newTransactionHistory = new List<string>();
-            const string checkingAccountTransactionHistoryFilePath = "../../checkingAccountNEW.csv";
-            newTransactionHistory = CheckAccountBalance();
-            newTransactionHistory.Add(newTransaction.ToString());
-            using (var writer = new StreamWriter(checkingAccountTransactionHistoryFilePath))
-            {
-                foreach (var transaction in newTransactionHistory)
-                {
-                    writer.WriteLine($"{transaction}");
-                }
-            }
-
             return CheckingAccountBalance;
-
         }
     }
 }

@@ -11,61 +11,61 @@ namespace ATM
         public double StartDeposit(string accountSelection)
         {
             var newSavingsBalance = new SavingsAccount();
-            //var newCheckingBalance = new CheckingAccount();
-
+            var newCheckingBalance = new CheckingAccount();
+            double updatedBalance = 0;
 
             if (accountSelection == "savings")
             {
-                Console.WriteLine("How much would you like to deposit?");
-                var response = Console.ReadLine();
-                int amount;
-                bool result = Int32.TryParse(response, out amount);
-
-                var enterAmount = true;
-
-                while (enterAmount)
+                var enterAmount = false;
+                while (enterAmount == false)
                 {
+
+                    Console.WriteLine("How much would you like to deposit?");
+                    var response = Console.ReadLine();
+                    int amount;
+                    bool result = Int32.TryParse(response, out amount);
+
                     if (result == true)
                     {
+                        enterAmount = true;
                         newSavingsBalance.SavingsAccountBalance = newSavingsBalance.SavingsAccountBalance + amount;
                         newSavingsBalance.StoreNewTransaction(newSavingsBalance.SavingsAccountBalance);
+                        updatedBalance = newSavingsBalance.SavingsAccountBalance;
                     }
                     else
                     {
                         Console.WriteLine("Sorry, you didn't enter a valid amount. Please try again.");
                     }
+
                 }
 
             }
 
-            /*else
+            else
             {
-                Console.WriteLine("How much would you like to deposit?");
-                var response = Console.ReadLine();
-                int amount;
-                bool result = Int32.TryParse(response, out amount);
-
-                var enterAmount = true;
-
-                while (enterAmount)
+                var enterAmount = false;
+                while (enterAmount == false)
                 {
+                    Console.WriteLine("How much would you like to deposit?");
+                    var response = Console.ReadLine();
+                    int amount;
+                    bool result = Int32.TryParse(response, out amount);
+
                     if (result == true)
                     {
+                        enterAmount = true;
                         newCheckingBalance.CheckingAccountBalance = newCheckingBalance.CheckingAccountBalance + amount;
                         newCheckingBalance.StoreNewTransaction(newCheckingBalance.CheckingAccountBalance);
+                        updatedBalance = newCheckingBalance.CheckingAccountBalance;
+
                     }
                     else
                     {
                         Console.WriteLine("Sorry, you didn't enter a valid amount. Please try again.");
                     }
                 }
-            }*/
-
-            return newSavingsBalance.SavingsAccountBalance;
-            //return newCheckingBalance.CheckingAccountBalance;
-
-
-
+            }
+            return updatedBalance;
         }
     }
 }
