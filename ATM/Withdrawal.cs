@@ -30,7 +30,7 @@ namespace ATM
                         var transactionType = "withdrawal";
                         newSavingsBalance.SavingsAccountBalance = newSavingsBalance.SavingsAccountBalance - amount;
                         newSavingsBalance.StoreNewTransaction(newSavingsBalance.SavingsAccountBalance);
-                        newSavingsBalance.LogToStatement(newSavingsBalance.SavingsAccountBalance, transactionType);
+                        newSavingsBalance.LogToStatement(newSavingsBalance.SavingsAccountBalance, amount, transactionType);
                         updatedBalance = newSavingsBalance.SavingsAccountBalance;
                     }
                     else
@@ -58,7 +58,7 @@ namespace ATM
                         var transactionType = "withdrawal";
                         newCheckingBalance.CheckingAccountBalance = newCheckingBalance.CheckingAccountBalance - amount;
                         newCheckingBalance.StoreNewTransaction(newCheckingBalance.CheckingAccountBalance);
-                        newCheckingBalance.LogToStatement(newCheckingBalance.CheckingAccountBalance, transactionType);
+                        newCheckingBalance.LogToStatement(newCheckingBalance.CheckingAccountBalance, amount, transactionType);
                         updatedBalance = newCheckingBalance.CheckingAccountBalance;
 
                     }

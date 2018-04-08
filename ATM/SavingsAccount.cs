@@ -47,8 +47,10 @@ namespace ATM
 
         }
 
-        public List<string> LogToStatement(double newTransaction, string transactionType)
+        public List<string> LogToStatement(double newBalance, double amount, string transactionType)
         {
+            Console.WriteLine($"{newBalance}");
+
             DateTime date = DateTime.Now;
             var transType = "";
             if (transactionType == "deposit")
@@ -64,6 +66,7 @@ namespace ATM
                 transType = "Transfer";
             }
 
+
             var savingsAccountStatment = new List<string>();
             const string savingsAccountStatementFilePath = "../../savingsAccountStatement.csv";
             using (var reader = new StreamReader(savingsAccountStatementFilePath))
@@ -75,13 +78,15 @@ namespace ATM
                 }
             }
 
-            //var newTransactionHistory = new List<string>();
-            savingsAccountStatment.Add(newTransaction.ToString());
+            var newLine = $"{date} | {transType} in Savings Account | Amount:{amount} | Balance:{newBalance}";
+
+            savingsAccountStatment.Add(newLine);
+
             using (var writer = new StreamWriter(savingsAccountStatementFilePath))
             {
                 foreach (var transaction in savingsAccountStatment)
                 {
-                    writer.WriteLine($"{date} | {transType} in Savings Account | Amount:{transaction}");
+                    writer.WriteLine($"{transaction}");
                 }
             }
 

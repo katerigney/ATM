@@ -29,11 +29,11 @@ namespace ATM
                         var transactionType = "transfer";
                         newSavingsBalance.SavingsAccountBalance = newSavingsBalance.SavingsAccountBalance + amount;
                         newSavingsBalance.StoreNewTransaction(newSavingsBalance.SavingsAccountBalance);
-                        newSavingsBalance.LogToStatement(newSavingsBalance.SavingsAccountBalance, transactionType);
+                        newSavingsBalance.LogToStatement(newSavingsBalance.SavingsAccountBalance, amount, transactionType);
 
                         newCheckingBalance.CheckingAccountBalance = newCheckingBalance.CheckingAccountBalance - amount;
                         newCheckingBalance.StoreNewTransaction(newCheckingBalance.CheckingAccountBalance);
-                        newCheckingBalance.LogToStatement(newCheckingBalance.CheckingAccountBalance, transactionType);
+                        newCheckingBalance.LogToStatement(newCheckingBalance.CheckingAccountBalance, amount, transactionType);
                     }
                     else
                     {
@@ -60,11 +60,11 @@ namespace ATM
                         var transactionType = "transfer";
                         newCheckingBalance.CheckingAccountBalance = newCheckingBalance.CheckingAccountBalance + amount;
                         newCheckingBalance.StoreNewTransaction(newCheckingBalance.CheckingAccountBalance);
-                        newCheckingBalance.LogToStatement(newCheckingBalance.CheckingAccountBalance, transactionType);
+                        newCheckingBalance.LogToStatement(newCheckingBalance.CheckingAccountBalance, amount, transactionType);
 
                         newSavingsBalance.SavingsAccountBalance = newSavingsBalance.SavingsAccountBalance - amount;
                         newSavingsBalance.StoreNewTransaction(newSavingsBalance.SavingsAccountBalance);
-                        newSavingsBalance.LogToStatement(newSavingsBalance.SavingsAccountBalance, transactionType);
+                        newSavingsBalance.LogToStatement(newSavingsBalance.SavingsAccountBalance, amount, transactionType);
                     }
                     else
                     {
