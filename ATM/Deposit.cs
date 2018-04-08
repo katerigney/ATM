@@ -28,8 +28,10 @@ namespace ATM
                     if (result == true)
                     {
                         enterAmount = true;
+                        var transactionType = "deposit";
                         newSavingsBalance.SavingsAccountBalance = newSavingsBalance.SavingsAccountBalance + amount;
                         newSavingsBalance.StoreNewTransaction(newSavingsBalance.SavingsAccountBalance);
+                        newSavingsBalance.LogToStatement(newSavingsBalance.SavingsAccountBalance, transactionType);
                         updatedBalance = newSavingsBalance.SavingsAccountBalance;
                     }
                     else
@@ -54,8 +56,10 @@ namespace ATM
                     if (result == true)
                     {
                         enterAmount = true;
+                        var transactionType = "deposit";
                         newCheckingBalance.CheckingAccountBalance = newCheckingBalance.CheckingAccountBalance + amount;
                         newCheckingBalance.StoreNewTransaction(newCheckingBalance.CheckingAccountBalance);
+                        newCheckingBalance.LogToStatement(newCheckingBalance.CheckingAccountBalance, transactionType);
                         updatedBalance = newCheckingBalance.CheckingAccountBalance;
 
                     }

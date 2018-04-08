@@ -12,7 +12,7 @@ namespace ATM
         public double SavingsAccountBalance { get; set; }
 
         public List<string> CheckAccountBalance()
-        { 
+        {
             var savingsAccountTransactionHistory = new List<string>();
             const string savingsAccountTransactionHistoryFilePath = "../../savingsAccountNEW.csv";
             using (var reader = new StreamReader(savingsAccountTransactionHistoryFilePath))
@@ -32,6 +32,7 @@ namespace ATM
         {
             var newTransactionHistory = new List<string>();
             const string savingsAccountTransactionHistoryFilePath = "../../savingsAccountNEW.csv";
+
             newTransactionHistory = CheckAccountBalance();
             newTransactionHistory.Add(newTransaction.ToString());
             using (var writer = new StreamWriter(savingsAccountTransactionHistoryFilePath))
@@ -44,6 +45,47 @@ namespace ATM
 
             return SavingsAccountBalance;
 
+        }
+
+        public List<string> LogToStatement(double newTransaction, string transactionType)
+        {
+            DateTime date = DateTime.Now;
+            var transType = "";
+            if (transactionType == "deposit")
+            {
+                transType = "Deposit";
+            }
+            else if (transactionType == "withdrawal")
+            {
+                transType = "Withdrawal";
+            }
+            else
+            {
+                transType = "Transfer";
+            }
+
+            var savingsAccountStatment = new List<string>();
+            const string savingsAccountStatementFilePath = "../../savingsAccountStatement.csv";
+            using (var reader = new StreamReader(savingsAccountStatementFilePath))
+            {
+                while (reader.Peek() > -1)
+                {
+                    var existingTransaction = reader.ReadLine();
+                    savingsAccountStatment.Add(existingTransaction);
+                }
+            }
+
+            //var newTransactionHistory = new List<string>();
+            savingsAccountStatment.Add(newTransaction.ToString());
+            using (var writer = new StreamWriter(savingsAccountStatementFilePath))
+            {
+                foreach (var transaction in savingsAccountStatment)
+                {
+                    writer.WriteLine($"{date} | {transType} in Savings Account | Amount:{transaction}");
+                }
+            }
+
+            return savingsAccountStatment;
         }
     }
 }

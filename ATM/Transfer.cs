@@ -26,11 +26,14 @@ namespace ATM
                     if (result == true)
                     {
                         enterAmount = true;
+                        var transactionType = "transfer";
                         newSavingsBalance.SavingsAccountBalance = newSavingsBalance.SavingsAccountBalance + amount;
                         newSavingsBalance.StoreNewTransaction(newSavingsBalance.SavingsAccountBalance);
+                        newSavingsBalance.LogToStatement(newSavingsBalance.SavingsAccountBalance, transactionType);
 
                         newCheckingBalance.CheckingAccountBalance = newCheckingBalance.CheckingAccountBalance - amount;
                         newCheckingBalance.StoreNewTransaction(newCheckingBalance.CheckingAccountBalance);
+                        newCheckingBalance.LogToStatement(newCheckingBalance.CheckingAccountBalance, transactionType);
                     }
                     else
                     {
@@ -54,12 +57,14 @@ namespace ATM
                     if (result == true)
                     {
                         enterAmount = true;
-                        
+                        var transactionType = "transfer";
                         newCheckingBalance.CheckingAccountBalance = newCheckingBalance.CheckingAccountBalance + amount;
                         newCheckingBalance.StoreNewTransaction(newCheckingBalance.CheckingAccountBalance);
+                        newCheckingBalance.LogToStatement(newCheckingBalance.CheckingAccountBalance, transactionType);
 
                         newSavingsBalance.SavingsAccountBalance = newSavingsBalance.SavingsAccountBalance - amount;
                         newSavingsBalance.StoreNewTransaction(newSavingsBalance.SavingsAccountBalance);
+                        newSavingsBalance.LogToStatement(newSavingsBalance.SavingsAccountBalance, transactionType);
                     }
                     else
                     {
