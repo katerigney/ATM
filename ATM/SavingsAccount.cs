@@ -13,30 +13,30 @@ namespace ATM
 
         public List<string> CheckAccountBalance()
         { 
-            var savingsAccountDepositHistory = new List<string>();
-            const string savingsAccountDepositHistoryFilePath = "../../savingsAccount.csv";
-            using (var reader = new StreamReader(savingsAccountDepositHistoryFilePath))
+            var savingsAccountTransactionHistory = new List<string>();
+            const string savingsAccountTransactionHistoryFilePath = "../../savingsAccount.csv";
+            using (var reader = new StreamReader(savingsAccountTransactionHistoryFilePath))
             {
                 while (reader.Peek() > -1)
                 {
-                    var existingDeposit = Convert.ToInt32(reader.ReadLine());
-                    SavingsAccountBalance = SavingsAccountBalance + existingDeposit;
-                    var existingDepositReWrite = Convert.ToString(existingDeposit);
-                    savingsAccountDepositHistory.Add(existingDepositReWrite);
+                    var existingTransaction = Convert.ToInt32(reader.ReadLine());
+                    SavingsAccountBalance = SavingsAccountBalance + existingTransaction;
+                    var existingTransactionReWrite = Convert.ToString(existingTransaction);
+                    savingsAccountTransactionHistory.Add(existingTransactionReWrite);
                 }
             }
-            return savingsAccountDepositHistory;
+            return savingsAccountTransactionHistory;
         }
 
         public double StoreNewTransaction(double newTransaction)
         {
-            var newDepositHistory = new List<string>();
-            const string savingsAccountDepositHistoryFilePath = "../../savingsAccount.csv";
-            newDepositHistory = CheckAccountBalance();
-            newDepositHistory.Add(newTransaction.ToString());
-            using (var writer = new StreamWriter(savingsAccountDepositHistoryFilePath))
+            var newTransactionHistory = new List<string>();
+            const string savingsAccountTransactionHistoryFilePath = "../../savingsAccount.csv";
+            newTransactionHistory = CheckAccountBalance();
+            newTransactionHistory.Add(newTransaction.ToString());
+            using (var writer = new StreamWriter(savingsAccountTransactionHistoryFilePath))
             {
-                foreach (var transaction in newDepositHistory)
+                foreach (var transaction in newTransactionHistory)
                 {
                     writer.WriteLine($"{transaction}");
                 }

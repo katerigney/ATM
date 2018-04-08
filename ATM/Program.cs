@@ -10,8 +10,6 @@ namespace ATM
     {
        static bool programIsRunning = true;
 
-       //static double newAmount =  0;
-
        static public void MMenu()
         {
             Console.WriteLine("Would you like to make a (withdrawal), (deposit) or (transfer)? You can also (view) your account balance.");
@@ -70,7 +68,10 @@ namespace ATM
             {
                 //when the program starts, it will display the current balance for their checking and savings account.If none exist, show 0.
                 Console.WriteLine("Welcome to the ATM!"); // display only on start
-          
+
+                var getBalance = new GetSavingsBalance();
+                double SavingsAccountBalance = getBalance.GetBalance();
+                Console.WriteLine($"Your Savings Account Balance is {SavingsAccountBalance}");
                 MMenu();
             }
         }
