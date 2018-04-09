@@ -78,7 +78,7 @@ namespace ATM
                 }
             }
 
-            var newLine = $"{date} | {transType} in Savings Account | Amount:{amount} | Balance:{newBalance}";
+            var newLine = $"{date} | {transType} in Savings Account | Amount:${amount} | Balance:${newBalance}";
 
             savingsAccountStatment.Add(newLine);
 
@@ -91,6 +91,25 @@ namespace ATM
             }
 
             return savingsAccountStatment;
+        }
+
+        public void ViewStatement()
+        {
+            var savingsAccountStatment = new List<string>();
+            const string savingsAccountStatementFilePath = "../../savingsAccountStatement.csv";
+            using (var reader = new StreamReader(savingsAccountStatementFilePath))
+            {
+                while (reader.Peek() > -1)
+                {
+                    var existingTransaction = reader.ReadLine();
+                    savingsAccountStatment.Add(existingTransaction);
+                    foreach (var transaction in savingsAccountStatment)
+                    {
+                        Console.WriteLine($"{transaction}");
+                    }
+                }
+            }
+            
         }
     }
 }

@@ -50,7 +50,6 @@ namespace ATM
 
         public List<string> LogToStatement(double newBalance, double amount, string transactionType)
         {
-
             DateTime date = DateTime.Now;
             var transType = "";
             if (transactionType == "deposit")
@@ -78,7 +77,7 @@ namespace ATM
                 }
             }
 
-            var newLine = $"{date} | {transType} in Savings Account | Amount:{amount} | Balance:{newBalance}";
+            var newLine = $"{date} | {transType} in Savings Account | Amount:${amount} | Balance:${newBalance}";
 
             checkingAccountStatment.Add(newLine);
 
@@ -91,6 +90,24 @@ namespace ATM
             }
 
             return checkingAccountStatment;
+        }
+
+        public void ViewStatement()
+        {
+            var checkingAccountStatment = new List<string>();
+            const string checkingAccountStatementFilePath = "../../savingsAccountStatement.csv";
+            using (var reader = new StreamReader(checkingAccountStatementFilePath))
+            {
+                while (reader.Peek() > -1)
+                {
+                    var existingTransaction = reader.ReadLine();
+                    checkingAccountStatment.Add(existingTransaction);
+                }
+            }
+            foreach (var transaction in checkingAccountStatment)
+            {
+                Console.WriteLine($"{transaction}");
+            }
         }
     }
 }

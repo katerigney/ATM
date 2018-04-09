@@ -12,7 +12,7 @@ namespace ATM
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to the ATM!"); // display only on start
+            Console.WriteLine("Welcome to the ATM!"); 
 
             while (programIsRunning)
             {
@@ -25,6 +25,7 @@ namespace ATM
                 Console.WriteLine($"Your checking account balance is {CheckingAccountBalance}");
 
                 Console.WriteLine("Would you like to make a (withdrawal), (deposit) or (transfer) between your accounts?");
+                Console.WriteLine("You can also (view) your most recent transaction or (exit) the ATM.");
                 var startTask = Console.ReadLine().ToLower();
 
                 // ERROR HANDLING
@@ -49,7 +50,7 @@ namespace ATM
 
                     Console.WriteLine("Your new balance is " + newAmount);
                 }
-                else 
+                else if (startTask == "transfer")
                 {
                     Console.WriteLine("Please select the transfer you would like to make:");
                     Console.WriteLine("(1.) Transfer from your checking account to your savings account");
@@ -61,6 +62,26 @@ namespace ATM
                     userTransfer.StartTransfer(selection);
 
                 }
+                else if (startTask == "view")
+                {
+                    Console.WriteLine("Do you want to view your (checking) or (savings) account?");
+                    var accountSelection = Console.ReadLine().ToLower();
+
+                    if (accountSelection == "checking")
+                    {
+                        var viewCheckingStatement = new CheckingAccount();
+                        viewCheckingStatement.ViewStatement();
+                    }
+                    else
+                    {
+                        var viewSavingsStatement = new SavingsAccount();
+                        viewSavingsStatement.ViewStatement();
+                    }
+                }
+                else
+                {
+                    programIsRunning = false;
+                }
                
             }
         }
@@ -69,7 +90,5 @@ namespace ATM
 
 
 //close program functionality
-//view transaction history
-
 
     //MULTIPLE USERS - Constructor - WHAT DOES EACH ACCT NEED???!!!
